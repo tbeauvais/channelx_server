@@ -6,6 +6,7 @@ GEM
     diff-lcs (1.2.5)
     fakeredis (0.5.0)
       redis (~> 3.0)
+    grocer (0.6.1)
     method_source (0.8.2)
     multi_json (1.11.1)
     pry (0.10.1)
@@ -52,6 +53,7 @@ PLATFORMS
 
 DEPENDENCIES
   fakeredis
+  grocer
   pry
   puma
   rack-test
