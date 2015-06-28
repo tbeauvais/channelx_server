@@ -1,0 +1,8 @@
+---
+applications:
+- name: channelx-api
+  memory: 128M
+  host: channelx-api
+  buildpack: https://github.com/cloudfoundry/buildpack-ruby.git
+services:
+- redis-db1
