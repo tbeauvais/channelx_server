@@ -21,6 +21,7 @@ class App < Sinatra::Base
   end
 
   require_relative 'routes/messages'
+  require_relative 'routes/emails'
 
 end
 
