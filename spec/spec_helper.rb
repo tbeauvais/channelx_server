@@ -15,6 +15,7 @@ set :run, false
 set :raise_errors, true
 set :logging, false
 
+DEFAULT_UUID = '384fb29b-c53f-4d71-8498-a35e8a7321a4'
 
 RSpec.configure do |config|
 
@@ -27,7 +28,7 @@ RSpec.configure do |config|
 
   module SecureRandom
     def self.uuid
-      '384fb29b-c53f-4d71-8498-a35e8a7321a4'
+      DEFAULT_UUID
     end
   end
 

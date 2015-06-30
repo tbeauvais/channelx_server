@@ -1,5 +1,8 @@
+require 'load_path'
 require 'sinatra'
 require 'sinatra/contrib'
+require 'message_access'
+require 'redis_connection'
 
 require 'sinatra/reloader' if ENV['RACK_ENV'] == 'development'
 require 'pry' if %w[development test].include? ENV['RACK_ENV']
@@ -12,19 +15,12 @@ class App < Sinatra::Base
     register Sinatra::Reloader
   end
 
-  namespace '/api/v1' do
-
-    get '/hello' do
-      json message: 'Hello There!!!'
-    end
-
+  def redis_client
+    RedisConnection.client
   end
 
-  require_relative 'routes/messages'
-  require_relative 'routes/emails'
+  # Load API routes
+  require 'messages'
+  require 'emails'
 
 end
-
-
-
-
