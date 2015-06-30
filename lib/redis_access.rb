@@ -9,31 +9,28 @@ module RedisAccess
   end
 
   def fetch_all
-    messages = client.hgetall hash_key
-    messages.keys.map {|key| JSON.parse(messages[key])}
+    items = client.hgetall hash_key
+    items.keys.map {|key| JSON.parse(items[key])}
   end
 
   def fetch(id)
-    message = client.hget hash_key, id
-    message ? JSON.parse(message) : nil
+    data = client.hget hash_key, id
+    data ? JSON.parse(data) : nil
   end
 
-  def add(message)
-    message['id'] = SecureRandom.uuid
-    client.hset hash_key, message['id'], message.to_json
-    message
+  def add(data)
+    data['id'] = SecureRandom.uuid
+    client.hset hash_key, data['id'], data.to_json
+    data
   end
 
-  def update(id, message)
-    client.hset hash_key, id, message.to_json
-    model
+  def update(id, data)
+    client.hset hash_key, id, data.to_json
+    data
   end
 
   def delete(id)
     client.hdel hash_key, id
-  rescue
-    false
-    true
   end
 
   def hash_key
