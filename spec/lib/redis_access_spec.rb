@@ -74,3 +74,8 @@ end
 describe MessageAccess do
   it_behaves_like 'a redis_access'
 end
+
+describe AccountAccess do
+  it_behaves_like 'a redis_access'
+end
+
