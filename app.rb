@@ -1,4 +1,4 @@
-require 'load_path'
+require './load_path'
 require 'sinatra'
 require 'sinatra/contrib'
 require 'message_access'
