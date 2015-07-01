@@ -4,6 +4,7 @@ require 'sinatra/contrib'
 require 'sinatra/cross_origin'
 require 'message_access'
 require 'account_access'
+require 'aws_access'
 require 'device_access'
 require 'redis_connection'
 
