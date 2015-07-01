@@ -23,10 +23,11 @@ class App < Sinatra::Base
 
         Notifier.send_notification('6533903318951d6fe40616f238ad325219f824638535272ea4b8b626d86eae4b', subject)
 
-        File.open('email.json', 'w') {|f| f.write(request.body.read) }
+        #File.open('email.json', 'w') {|f| f.write(request.body.read) }
         obj = AwsAccess.upload(email['html'])
         json success: 'Created', url: obj.public_url
       rescue => e
+        # Rspec doesn't report meaningful errors with Sinatra without this.
         puts e.backtrace
         raise e
       end

@@ -32,8 +32,8 @@ class App < Sinatra::Base
   end
 
   # Load API routes
-  require 'emails'
   require 'messages'
+  require 'emails'
   require 'accounts'
   require 'devices'
 
