@@ -9,6 +9,7 @@ describe 'App' do
       before(:each) {
         expect(Notifier).to receive(:send_notification)
         expect(AwsAccess).to receive(:upload).and_return(double('aws', public_url: 'www.test.com'))
+        expect_any_instance_of(App).to receive(:device_access).and_return(double('access', fetch_all: ['12345']))
       }
 
       let(:email) { {headers: {Subject: 'this is a test'}, html: '<html><body>test</body></html>'} }
@@ -30,12 +31,7 @@ describe 'App' do
 
       it 'stores email html to s3' do
         post '/api/v1/emails', email.to_json
-        expect(JSON.parse(last_response.body)['url']).not_to be_empty
-      end
-
-      xit 'adds new message' do
-        post '/api/v1/emails', email.to_json
-        expect(last_response.body).to eq ({'success' => 'Created'}.to_json)
+        expect(JSON.parse(last_response.body)['url']).to eq 'www.test.com'
       end
 
     end

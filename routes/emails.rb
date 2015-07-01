@@ -23,9 +23,10 @@ class App < Sinatra::Base
 
         message_access.add(message)
 
-        Notifier.send_notification('6533903318951d6fe40616f238ad325219f824638535272ea4b8b626d86eae4b', subject)
+        device_access.fetch_all.each do |device|
+          Notifier.send_notification(device['token'], subject)
+        end
 
-        #File.open('email.json', 'w') {|f| f.write(request.body.read) }
         json success: 'Created', url: obj.public_url
       rescue => e
         # Rspec doesn't report meaningful errors with Sinatra without this.
