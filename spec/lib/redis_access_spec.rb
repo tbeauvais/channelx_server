@@ -3,7 +3,6 @@ require 'spec_helper'
 shared_examples 'a redis_access' do
 
   let(:redis_access) { described_class.new(RedisConnection.client) }
-  let(:sample_data) { {'name' => 'test', 'link' => 'www.test.com'} }
 
   context '#fetch_all' do
 
@@ -72,14 +71,17 @@ shared_examples 'a redis_access' do
 end
 
 describe MessageAccess do
+  let(:sample_data) { {'name' => 'test', 'link' => 'www.test.com'} }
   it_behaves_like 'a redis_access'
 end
 
 describe AccountAccess do
+  let(:sample_data) { {'name' => 'test', 'link' => 'www.test.com'} }
   it_behaves_like 'a redis_access'
 end
 
 describe DeviceAccess do
+  let(:sample_data) { {'token' => DEFAULT_UUID, 'type' => 'ios'} }
   it_behaves_like 'a redis_access'
 end
 
