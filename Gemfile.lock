@@ -59,6 +59,7 @@ GEM
     slop (3.6.0)
     systemu (2.6.5)
     tilt (2.0.1)
+    timecop (0.7.4)
     uuid (2.3.8)
       macaddr (~> 1.0)
 
@@ -77,4 +78,5 @@ DEPENDENCIES
   sinatra
   sinatra-contrib
   sinatra-cross_origin
+  timecop
   uuid

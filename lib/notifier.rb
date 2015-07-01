@@ -3,8 +3,7 @@ require 'grocer'
 class Notifier
 
   def self.pusher
-    $stderr.puts "!!!!! " + cert_file
-    @pusher ||= Grocer.pusher(certificate: cert_file, gateway:  'gateway.sandbox.push.apple.com',  port: 2195,  retries:  1, passphrase: 'Channelx0628')
+    Grocer.pusher(certificate: cert_file, gateway:  'gateway.sandbox.push.apple.com',  port: 2195,  retries:  1, passphrase: 'Channelx0628')
   end
 
   def self.send_notification(token, message)

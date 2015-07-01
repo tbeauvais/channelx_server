@@ -15,9 +15,9 @@ class App < Sinatra::Base
         
         # temporary message
         message = {
-          name: 'SUNNY\'S',
+          name: 'TJ\'S',
           lastText: subject,
-          logo: 'https://static.ctctcdn.com/galileo/images/templates/Galileo-Template-Images/FeedbackRequest/FeedbackRequest_VerticalLogo.png',
+          logo: "https://static.ctctcdn.com/galileo/images/templates/Galileo-Template-Images/VerticalLogos/VerticalLogo_Restaurant.png",
           link: obj.public_url
         }
 

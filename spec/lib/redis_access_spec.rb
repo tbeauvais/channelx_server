@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'timecop'
 
 shared_examples 'a redis_access' do
 
@@ -72,7 +73,29 @@ end
 
 describe MessageAccess do
   let(:sample_data) { {'name' => 'test', 'link' => 'www.test.com'} }
+  let(:sample_data2) { {'name' => 'test2', 'link' => 'www.test.com'} }
+  let(:redis_access) { described_class.new(RedisConnection.client) }
+
   it_behaves_like 'a redis_access'
+
+  it 'adds time' do
+    redis_access.add(sample_data)
+    expect(sample_data['time']).not_to eq nil
+  end
+
+  it 'reverse sort by time' do
+    expect(SecureRandom).to receive(:uuid).and_return(DEFAULT_UUID, '123')
+    time1 = Time.now
+    Timecop.freeze(time1) do
+      redis_access.add(sample_data)
+    end
+    time2 = Time.now - 100
+    Timecop.freeze(time2) do
+      redis_access.add(sample_data2)
+    end
+    expect(redis_access.fetch_all.map{|a| a['time']}).to eq [time1.to_i, time2.to_i]
+  end
+
 end
 
 describe AccountAccess do

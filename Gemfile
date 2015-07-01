@@ -16,6 +16,7 @@ group :test do
   gem 'rspec'
   gem 'rack-test'
   gem 'fakeredis'
+  gem 'timecop'
 end
 
 group :development, :test do
