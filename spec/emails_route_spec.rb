@@ -6,7 +6,11 @@ describe 'App' do
 
     context 'post' do
 
-      let(:email) { {html: '<html><body>test</body></html>'} }
+      before(:each) {
+        expect(Notifier).to receive(:send_notification)
+      }
+
+      let(:email) { {headers: {Subject: 'this is a test'}, html: '<html><body>test</body></html>'} }
 
       it 'responds with 201' do
         post '/api/v1/emails', email.to_json
