@@ -4,6 +4,7 @@ require 'sinatra/contrib'
 require 'sinatra/cross_origin'
 require 'message_access'
 require 'account_access'
+require 'device_access'
 require 'redis_connection'
 
 require 'sinatra/reloader' if ENV['RACK_ENV'] == 'development'
@@ -33,5 +34,6 @@ class App < Sinatra::Base
   require 'messages'
   require 'emails'
   require 'accounts'
+  require 'devices'
 
 end

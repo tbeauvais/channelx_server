@@ -79,3 +79,7 @@ describe AccountAccess do
   it_behaves_like 'a redis_access'
 end
 
+describe DeviceAccess do
+  it_behaves_like 'a redis_access'
+end
+
