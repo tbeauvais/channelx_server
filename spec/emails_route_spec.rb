@@ -22,6 +22,11 @@ describe 'App' do
         expect(last_response.body).to eq ({'success' => 'Created'}.to_json)
       end
 
+      it 'adds message' do
+        expect_any_instance_of(App).to receive_message_chain(:message_access, :add)
+        post '/api/v1/emails', email.to_json
+      end
+
       xit 'stores email html to s3' do
         post '/api/v1/emails', email.to_json
         expect(last_response.body).to eq ({'success' => 'Created'}.to_json)
