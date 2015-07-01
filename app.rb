@@ -4,6 +4,7 @@ require 'sinatra/contrib'
 require 'sinatra/cross_origin'
 require 'message_access'
 require 'account_access'
+require 'aws_access'
 require 'redis_connection'
 
 require 'sinatra/reloader' if ENV['RACK_ENV'] == 'development'
@@ -30,8 +31,8 @@ class App < Sinatra::Base
   end
 
   # Load API routes
-  require 'messages'
   require 'emails'
+  require 'messages'
   require 'accounts'
 
 end

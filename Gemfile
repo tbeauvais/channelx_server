@@ -8,6 +8,8 @@ gem 'sinatra-cross_origin'
 gem 'puma'
 gem 'grocer'
 gem 'redis'
+gem 'aws-sdk', '~> 2'
+gem 'uuid'
 
 
 group :test do
