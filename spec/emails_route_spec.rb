@@ -6,7 +6,11 @@ describe 'App' do
 
     context 'post' do
 
-      let(:email) { {html: '<html><body>test</body></html>'} }
+      before(:each) {
+        expect(Notifier).to receive(:send_notification)
+      }
+
+      let(:email) { {headers: {Subject: 'this is a test'}, html: '<html><body>test</body></html>'} }
 
       it 'responds with 201' do
         post '/api/v1/emails', email.to_json
@@ -15,12 +19,17 @@ describe 'App' do
 
       it 'adds new email' do
         post '/api/v1/emails', email.to_json
-        expect(last_response.body).to eq ({'success' => 'Created'}.to_json)
+        expect(JSON.parse(last_response.body)).to include({'success' => 'Created'})
       end
 
-      xit 'stores email html to s3' do
+      it 'adds message' do
+        expect_any_instance_of(App).to receive_message_chain(:message_access, :add)
         post '/api/v1/emails', email.to_json
-        expect(last_response.body).to eq ({'success' => 'Created'}.to_json)
+      end
+
+      it 'stores email html to s3' do
+        post '/api/v1/emails', email.to_json
+        expect(JSON.parse(last_response.body)['url']).not_to be_empty
       end
 
       xit 'adds new message' do

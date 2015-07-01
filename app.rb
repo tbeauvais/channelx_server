@@ -5,6 +5,7 @@ require 'sinatra/cross_origin'
 require 'message_access'
 require 'account_access'
 require 'aws_access'
+require 'device_access'
 require 'redis_connection'
 
 require 'sinatra/reloader' if ENV['RACK_ENV'] == 'development'
@@ -34,5 +35,6 @@ class App < Sinatra::Base
   require 'emails'
   require 'messages'
   require 'accounts'
+  require 'devices'
 
 end
