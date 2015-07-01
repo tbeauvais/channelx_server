@@ -8,6 +8,7 @@ describe 'App' do
 
       before(:each) {
         expect(Notifier).to receive(:send_notification)
+        expect(AwsAccess).to receive(:upload).and_return(double('aws', public_url: 'www.test.com'))
       }
 
       let(:email) { {headers: {Subject: 'this is a test'}, html: '<html><body>test</body></html>'} }

@@ -78,6 +78,3 @@ DEPENDENCIES
   sinatra-contrib
   sinatra-cross_origin
   uuid
-
-BUNDLED WITH
-   1.10.5
