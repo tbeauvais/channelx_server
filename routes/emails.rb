@@ -11,12 +11,14 @@ class App < Sinatra::Base
         email = parse_email(request)
         subject = email['headers']['Subject']
 
+        obj = AwsAccess.upload(email['html'])
+        
         # temporary message
         message = {
           name: 'SUNNY\'S',
           lastText: subject,
           logo: 'https://static.ctctcdn.com/galileo/images/templates/Galileo-Template-Images/FeedbackRequest/FeedbackRequest_VerticalLogo.png',
-          link: 'https://s3.amazonaws.com/channelx/florist.html'
+          link: obj.public_url
         }
 
         message_access.add(message)
@@ -24,7 +26,6 @@ class App < Sinatra::Base
         Notifier.send_notification('6533903318951d6fe40616f238ad325219f824638535272ea4b8b626d86eae4b', subject)
 
         #File.open('email.json', 'w') {|f| f.write(request.body.read) }
-        obj = AwsAccess.upload(email['html'])
         json success: 'Created', url: obj.public_url
       rescue => e
         # Rspec doesn't report meaningful errors with Sinatra without this.
