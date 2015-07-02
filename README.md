@@ -1,5 +1,9 @@
-Channel-X
+Channel-X Server
 ====================
+
+### API Server to support feeds for Subscriber Mobile App
+
+The source for the mobile app can be found here: https://github.roving.com/tbeauvais/channelx_mobile
 
 ## Run the server
 
@@ -13,7 +17,12 @@ Channel-X
     rackup
     http://localhost:9292/api/v1/messages
 
-# Alternative startup
+## Alternative startup
 
     bundle exec puma -p 8080
     http://localhost:8080/api/v1/messages
+
+
+## Server Hosted on CloudFoundry
+
+    http://channelx-api.mybluemix.net/api/v1/messages
