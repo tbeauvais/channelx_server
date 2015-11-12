@@ -2,6 +2,7 @@ require './load_path'
 require 'sinatra'
 require 'sinatra/contrib'
 require 'sinatra/cross_origin'
+require 'business_access'
 require 'message_access'
 require 'account_access'
 require 'aws_access'
@@ -36,5 +37,6 @@ class App < Sinatra::Base
   require 'emails'
   require 'accounts'
   require 'devices'
+  require 'businesses'
 
 end
