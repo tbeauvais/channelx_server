@@ -4,6 +4,7 @@ class App < Sinatra::Base
 
   namespace '/api/v1' do
 
+    # http://localhost:9292/api/v1/businesses?latitude=42.3869257&longitude=-71.2597545&type=Petstore
     get '/businesses' do
       businesses =  business_access.fetch_all
       running_list = params[:type] ? businesses.select{|k,_| k['type'] == params[:type]} : businesses
@@ -76,8 +77,8 @@ class App < Sinatra::Base
     convert_meters_to_miles meters
   end
 
-  def convert_meters_to_miles(m)
-    return (m * 0.00062137).round(2)
+  def convert_meters_to_miles(meters)
+    (meters * 0.00062137).round(2)
   end
 
 end
