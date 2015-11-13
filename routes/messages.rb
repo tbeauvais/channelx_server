@@ -39,10 +39,9 @@ class App < Sinatra::Base
 
       message_access.add(message)
 
-      if params[:notify]
-        device_access.fetch_all.each do |device|
-          Notifier.send_notification(device['token'], message[:lastText])
-        end
+      device_access.fetch_all.each do |device|
+        puts "Sending notification to #{device['token']} #{message['lastText']}"
+        Notifier.send_notification(device['token'], message['lastText'])
       end
 
       {id: message['id']}.to_json
